@@ -1,0 +1,141 @@
+@import "bootstrap.min.css";
+:root{
+    --color_item : #a80b1d;
+}
+
+/*.navbar{*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*    align-items: center;*/
+/*    height:80px;*/
+/*    position: sticky;*/
+/*}*/
+
+/*.image_logo{*/
+/*    margin-left: 20px;*/
+/*}*/
+
+/*.menu{*/
+/*    display: flex;*/
+/*    text-decoration: none;*/
+/*    align-items: center;*/
+/*}*/
+.navbar{
+    border-bottom: 2px solid var(--color_item);
+    padding: 0;
+    height: 80px;
+}
+
+#carouselExampleIndicators{
+    height: 600px;
+}
+
+#carouselExampleIndicators img{
+    height: 600px;
+    object-fit: cover;
+}
+.nav-link , .dropdown{
+    padding: 30px!important;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+}
+
+.nav-link.active{
+    color: white!important;
+    background-color: var(--color_item);
+}
+
+.buttonGroup{
+    text-decoration: none;
+    align-items: center;
+    padding: 40px;
+    color: black;
+    text-align: center;
+    display: flex;
+}
+
+.signup{
+    color: var(--color_item);
+    margin-right: 6px!important;
+    text-decoration: none;
+}
+
+.login{
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    background-color: #a80b1d;
+    text-decoration: none;
+}
+#bahasa{
+    border: none;
+    font-size: 16px;
+    background-color: transparent;
+}
+
+.carousel-indicators button{
+    height: 20px!important;
+    width: 20px!important;
+    background-clip: initial;
+    border-radius: 50%;
+}
+
+.red-line{
+    width: 150px;
+    height: 10px;
+    background-color: var(--color_item);
+    border-radius: 10px;
+}
+.card img{
+    height: 200px;
+    object-fit: cover;
+}
+
+.btn_custom{
+    border-radius: 20px;
+    color: white;
+    background-color: var(--color_item);
+}
+
+.btn_custom-2{
+    border-radius: 30px!important;
+    color: white;
+    background-color: var(--color_item);
+    margin-left: -20px!important;
+}
+
+.round_shape{
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.round_shape-2{
+    overflow: hidden;
+    border-radius: 30px;
+}
+
+.text_contact img{
+    height: 30px;
+    width: 30px;
+}
+
+.bg-grey{
+    background-color: darkgrey;
+}
+
+.bg-grey-light{
+    background-color: #eef0f1;
+}
+
+@media (max-width: 960px) {
+    #trending .card img , #trending .card-body{
+        width: 100%!important;
+    }
+
+    #subs{
+        width: 100%!important;
+    }
+
+
+}
