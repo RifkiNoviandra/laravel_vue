@@ -2,6 +2,8 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\token_admin;
+use App\Http\Middleware\token_user;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -63,5 +65,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'admin' => token_admin::class,
+        'user' => token_user::class,
     ];
 }

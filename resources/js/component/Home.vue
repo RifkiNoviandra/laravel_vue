@@ -79,33 +79,33 @@
 
         </div>
         <div class="row py-3">
-            <div class="col-lg-4">
+            <div class="col-lg-4" v-for=" i in data">
                 <div class="card w-100 flex-lg-row flex-column round_shape">
-                    <img src="/images/Karapan Sapi Madura-1.jpg" class="card-img-top w-50 " alt="">
+                    <img :src="`/images/${i.image}`" class="card-img-top w-50 " alt="">
                     <div class="card-body w-50  d-flex flex-column justify-content-center align-items-center">
-                        <h5 class="card-title">Card title</h5>
+                        <h5 class="card-title">{{ i.name }}</h5>
                         <a href="#" class="btn btn_custom">Baca Selengkapnya</a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
-                <div class="card w-100 flex-lg-row flex-column round_shape">
-                    <img src="/images/Karapan Sapi Madura-2.jpg" class="card-img-top w-50 " alt="">
-                    <div class="card-body w-50 d-flex flex-column justify-content-center align-items-center">
-                        <h5 class="card-title">Card title</h5>
-                        <a href="#" class="btn btn_custom">Baca Selengkapnya</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card w-100 flex-lg-row flex-column round_shape">
-                    <img src="/images/Karapan Sapi Madura-3.jpg" class="card-img-top w-50 " alt="">
-                    <div class="card-body w-50  d-flex flex-column justify-content-center align-items-center">
-                        <h5 class="card-title">Card title</h5>
-                        <a href="#" class="btn btn_custom">Baca Selengkapnya</a>
-                    </div>
-                </div>
-            </div>
+<!--            <div class="col-lg-4">-->
+<!--                <div class="card w-100 flex-lg-row flex-column round_shape">-->
+<!--                    <img src="/images/Karapan Sapi Madura-2.jpg" class="card-img-top w-50 " alt="">-->
+<!--                    <div class="card-body w-50 d-flex flex-column justify-content-center align-items-center">-->
+<!--                        <h5 class="card-title">Card title</h5>-->
+<!--                        <a href="#" class="btn btn_custom">Baca Selengkapnya</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-lg-4">-->
+<!--                <div class="card w-100 flex-lg-row flex-column round_shape">-->
+<!--                    <img src="/images/Karapan Sapi Madura-3.jpg" class="card-img-top w-50 " alt="">-->
+<!--                    <div class="card-body w-50  d-flex flex-column justify-content-center align-items-center">-->
+<!--                        <h5 class="card-title">Card title</h5>-->
+<!--                        <a href="#" class="btn btn_custom">Baca Selengkapnya</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
     </div>
     <div class="container-fluid px-5 py-3">
@@ -116,33 +116,33 @@
 
         </div>
         <div class="row py-3">
-            <div class="col-lg-4">
+            <div class="col-lg-4" v-for=" i in data ">
                 <div class="card w-100 round_shape">
-                    <img src="/images/Karapan Sapi Madura-1.jpg" class="card-img-top" alt="">
+                    <img :src="`/images/${i.image}`" class="card-img-top" alt="">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
+                        <h5 class="card-title">{{i.name}}</h5>
                         <div class="d-flex"><a href="#" class="btn btn_custom ms-auto">Baca Selengkapnya</a></div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
-                <div class="card w-100 round_shape">
-                    <img src="/images/Karapan Sapi Madura-1.jpg" class="card-img-top" alt="">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <div class="d-flex"><a href="#" class="btn btn_custom ms-auto">Baca Selengkapnya</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card w-100 round_shape">
-                    <img src="/images/Karapan Sapi Madura-1.jpg" class="card-img-top" alt="">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <div class="d-flex"><a href="#" class="btn btn_custom ms-auto">Baca Selengkapnya</a></div>
-                    </div>
-                </div>
-            </div>
+<!--            <div class="col-lg-4">-->
+<!--                <div class="card w-100 round_shape">-->
+<!--                    <img src="/images/Karapan Sapi Madura-1.jpg" class="card-img-top" alt="">-->
+<!--                    <div class="card-body">-->
+<!--                        <h5 class="card-title">Card title</h5>-->
+<!--                        <div class="d-flex"><a href="#" class="btn btn_custom ms-auto">Baca Selengkapnya</a></div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-lg-4">-->
+<!--                <div class="card w-100 round_shape">-->
+<!--                    <img src="/images/Karapan Sapi Madura-1.jpg" class="card-img-top" alt="">-->
+<!--                    <div class="card-body">-->
+<!--                        <h5 class="card-title">Card title</h5>-->
+<!--                        <div class="d-flex"><a href="#" class="btn btn_custom ms-auto">Baca Selengkapnya</a></div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
     </div>
     <div class="container-fluid py-3 bg-grey-light">
@@ -252,6 +252,22 @@
 <script>
 export default {
     name: 'Home',
+    data(){
+        return {
+            data: []
+        }
+    },
+    methods: {
+        async get(){
+            let path = await window.axios.get('/api/destination')
+            this.data = path.data.data
+            this.data.length = 3
+        }
+    },
+    mounted() {
+        this.get();
+    }
+
 };
 </script>
 
