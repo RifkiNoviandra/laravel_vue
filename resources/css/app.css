@@ -23,11 +23,17 @@
 .navbar{
     border-bottom: 2px solid var(--color_item);
     padding: 0;
-    height: 80px;
+    height: 85px;
 }
 
 #carouselExampleIndicators{
     height: 600px;
+}
+
+.hero{
+    top: 50%;
+    position: absolute;
+    z-index: 2;
 }
 
 #carouselExampleIndicators img{
@@ -138,4 +144,9 @@
     }
 
 
+}
+
+.border_items{
+    height: 200px;
+    border: solid 2px grey;
 }

@@ -11,4 +11,8 @@ class review extends Model
 
     protected $guarded = [];
     public $timestamps = false;
+
+    function user(){
+        return $this->belongsTo(User::class , 'id_user');
+    }
 }

@@ -29,11 +29,18 @@ export default {
     methods : {
         async input (){
             const data = {username : this.username , password : this.password}
-            let path = await window.axios.post('/api/login' , data)
+
+            let id = this.$route.params.id
+            let url = this.$route.params.id ? "/api/user/login" : "/api/login"
+            let path = await window.axios.post(url , data)
             console.log(path);
             if (path.data.message !== 'Password Salah'){
                 localStorage.setItem('token' , path.data.token);
-                this.$router.push('/admin/dashboard');
+                if (id === "user"){
+                    this.$router.push('/');
+                }else {
+                    this.$router.push('/admin/dashboard');
+                }
             }
         }
     }

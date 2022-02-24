@@ -11,4 +11,12 @@ class Destination extends Model
 
     protected $guarded = [];
     public $timestamps = false;
+
+    function Review(){
+        return $this->hasMany(review::class , 'id_destination')->orderByDesc('id');
+    }
+
+    function Facility(){
+        return $this->hasOne(facility::class , 'id_destination');
+    }
 }

@@ -8,7 +8,8 @@ use Psy\Util\Str;
 
 class destinationController extends Controller
 {
-    function create(Request $request){
+    function create(Request $request)
+    {
 
         $request->validate([
             'name' => 'required',
@@ -18,18 +19,17 @@ class destinationController extends Controller
             'image' => 'required'
         ]);
 
-        $input = $request->only('name' , 'location' , 'latitude' , 'longitude' , 'rating' , 'description');
+        $input = $request->only('name', 'location', 'latitude', 'longitude', 'rating', 'description');
 
         $files = $request->file('image');
-        $ext = ['jpg' , 'jpeg', 'png' , 'gif' , 'svg'];
+        $ext = ['jpg', 'jpeg', 'png', 'gif', 'svg'];
         $file_ext = $files->getClientOriginalExtension();
 
-        if (in_array($file_ext , $ext)){
-            $name = \Illuminate\Support\Str::random(7).$files->getClientOriginalName();
+        if (in_array($file_ext, $ext)) {
+            $name = \Illuminate\Support\Str::random(7) . $files->getClientOriginalName();
             $input['image'] = $name;
-            $request->image->move(public_path() . "/images" , $name);
-        }
-        else{
+            $request->image->move(public_path() . "/images", $name);
+        } else {
             return response([
                 'message' => 'file extension doesnt meet the requirement'
             ]);
@@ -37,7 +37,7 @@ class destinationController extends Controller
 
         $insert = Destination::create($input);
 
-        if (!$insert){
+        if (!$insert) {
             return response([
                 'message' => "Data Can't Be Processed"
             ]);
@@ -49,19 +49,20 @@ class destinationController extends Controller
 
     }
 
-    function delete(Request $request , $id){
+    function delete(Request $request, $id)
+    {
 
-        $id_destination = $id ;
+        $id_destination = $id;
 
-        $select = Destination::where('id' , $id_destination)->first();
+        $select = Destination::where('id', $id_destination)->first();
 
-        if (!$select){
+        if (!$select) {
             return response([
-                'message' => 'Data with'.$id_destination."cant Be found"
+                'message' => 'Data with' . $id_destination . "cant Be found"
             ]);
         }
 
-        if ($select->delete()){
+        if ($select->delete()) {
             return response([
                 'message' => 'data deleted'
             ]);
@@ -72,14 +73,15 @@ class destinationController extends Controller
         ]);
     }
 
-    function update(Request $request , $id){
+    function update(Request $request, $id)
+    {
         $id_destination = $id;
 
-        $select = Destination::where('id' , $id_destination)->first();
+        $select = Destination::where('id', $id_destination)->first();
 
-        if (!$select){
+        if (!$select) {
             return response([
-                'message' => 'Data with'.$id_destination.'cant be found'
+                'message' => 'Data with' . $id_destination . 'cant be found'
             ]);
         }
 
@@ -90,27 +92,26 @@ class destinationController extends Controller
         $request->rating ? $input['rating'] = $request->rating : $input['rating'] = $select->rating;
         $request->description ? $input['description'] = $request->description : $input['description'] = $select->description;
 
-        if ($files = $request->file('image')){
-            $ext = ['jpg' , 'jpeg', 'png' , 'gif' , 'svg'];
+        if ($files = $request->file('image')) {
+            $ext = ['jpg', 'jpeg', 'png', 'gif', 'svg'];
             $file_ext = $files->getClientOriginalExtension();
 
-            if (in_array($file_ext , $ext)){
-                $name = \Illuminate\Support\Str::random(7).$files->getClientOriginalName();
+            if (in_array($file_ext, $ext)) {
+                $name = \Illuminate\Support\Str::random(7) . $files->getClientOriginalName();
                 $input['image'] = $name;
-                $files->move(public_path() . "/images" , $name);
-            }
-            else{
+                $files->move(public_path() . "/images", $name);
+            } else {
                 return response([
                     'message' => 'file extension doesnt meet the requirement'
                 ]);
             }
-        }else{
+        } else {
             $input['image'] = $select->image;
         }
 
         $update = $select->update($input);
 
-        if (!$update){
+        if (!$update) {
             return response([
                 'message' => 'data cant be updated'
             ]);
@@ -122,9 +123,21 @@ class destinationController extends Controller
 
     }
 
-    function getAllData(Request $request){
+    function getAllData(Request $request)
+    {
         $data = Destination::all();
 
+        return response([
+            'data' => $data
+        ]);
+    }
+
+    function getDataId(Request $request, $id)
+    {
+        $id_destination = $id;
+//        $data = Destination::where('id' , $id_destination)->with('review.user' , 'facility')->first();
+        $data = Destination::find($id);
+        $data->load('review.user', 'facility');
         return response([
             'data' => $data
         ]);

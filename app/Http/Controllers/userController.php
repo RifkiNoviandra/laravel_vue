@@ -112,10 +112,18 @@ class userController extends Controller
         ]);
     }
 
+    function get_review(){
+        return response([
+            'data' => review::with('user')->orderBy('id' , 'desc')->get(),
+        ]);
+    }
+
     function search(Request $request){
         $request->validate([
             'key' => 'required'
         ]);
+
+//        return response($request);
 
         $key = $request->key;
 

@@ -25,7 +25,8 @@ Route::middleware('admin')->post('/logout' , [\App\Http\Controllers\authControll
 Route::middleware('admin')->post('/destination/create' , [\App\Http\Controllers\destinationController::class , 'create']);
 Route::middleware('admin')->post('/destination/update/{id}' , [\App\Http\Controllers\destinationController::class , 'update']);
 Route::middleware('admin')->delete('/destination/delete/{id}' , [\App\Http\Controllers\destinationController::class , 'delete']);
-Route::middleware('admin')->get('/destination/' , [\App\Http\Controllers\destinationController::class , 'getAllData']);
+Route::get('/destination/' , [\App\Http\Controllers\destinationController::class , 'getAllData']);
+Route::get('/destination/{id}' , [\App\Http\Controllers\destinationController::class , 'getDataId']);
 
 Route::middleware('admin')->post('/facility/create' , [\App\Http\Controllers\facilityController::class , 'create']);
 Route::middleware('admin')->post('/facility/update/{id}' , [\App\Http\Controllers\facilityController::class , 'update']);
@@ -36,5 +37,6 @@ Route::post('/user/create' , [\App\Http\Controllers\userController::class , 'reg
 Route::post('/user/login' , [\App\Http\Controllers\userController::class , 'login']);
 Route::middleware('user')->post('/user/logout' , [\App\Http\Controllers\userController::class , 'logout']);
 Route::middleware('user')->post('/user/review' , [\App\Http\Controllers\userController::class , 'review']);
+Route::middleware('user')->get('/user/review/get' , [\App\Http\Controllers\userController::class , 'get_review']);
 Route::middleware('user')->post('/user/search' , [\App\Http\Controllers\userController::class , 'search']);
 
