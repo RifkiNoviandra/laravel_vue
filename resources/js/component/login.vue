@@ -37,7 +37,7 @@ export default {
             if (path.data.message !== 'Password Salah'){
                 localStorage.setItem('token' , path.data.token);
                 if (id === "user"){
-                    this.$router.push('/');
+                    this.$router.push('/home');
                 }else {
                     this.$router.push('/admin/dashboard');
                 }

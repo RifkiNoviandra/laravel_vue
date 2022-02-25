@@ -33,8 +33,7 @@
                 </li>
                 <li class="nav-item">
                     <div class="buttonGroup justify-content-center">
-                        <router-link to="/" class="signup">Sign Up</router-link>
-                        <router-link to="/login/user" class="login">Login</router-link>
+                        <router-link to="/login/user" class="login" @click="logout">Logout</router-link>
                     </div>
                 </li>
             </ul>
@@ -87,8 +86,7 @@
                     </li>
                     <li class="nav-item">
                         <div class="buttonGroup ">
-                            <router-link to="/" class="signup">Sign Up</router-link>
-                            <router-link to="/login/user" class="login">Login</router-link>
+                            <router-link to="/login/user" class="login">Logout</router-link>
                         </div>
                     </li>
                 </ul>
@@ -99,7 +97,21 @@
 
 <script>
 export default {
-    name: 'template_HF',
+    name: 'template_home',
+    data(){
+        return {
+            data: []
+        }
+    },
+    methods : {
+        async logout(){
+            let path = await window.axios.post('/api/user/logout');
+            console.log(path);
+        }
+    },
+    mounted() {
+
+    }
 };
 </script>
 

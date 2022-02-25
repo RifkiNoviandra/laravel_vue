@@ -37,6 +37,7 @@ Route::post('/user/create' , [\App\Http\Controllers\userController::class , 'reg
 Route::post('/user/login' , [\App\Http\Controllers\userController::class , 'login']);
 Route::middleware('user')->post('/user/logout' , [\App\Http\Controllers\userController::class , 'logout']);
 Route::middleware('user')->post('/user/review' , [\App\Http\Controllers\userController::class , 'review']);
-Route::middleware('user')->get('/user/review/get' , [\App\Http\Controllers\userController::class , 'get_review']);
+Route::get('/user/review/get' , [\App\Http\Controllers\userController::class , 'get_review']);
+Route::get('/user/review/{id}' , [\App\Http\Controllers\userController::class , 'getReviewById']);
 Route::middleware('user')->post('/user/search' , [\App\Http\Controllers\userController::class , 'search']);
 

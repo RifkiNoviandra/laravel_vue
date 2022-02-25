@@ -133,4 +133,13 @@ class userController extends Controller
             'data' => $search
         ]);
     }
+
+    function getReviewById(Request $request , $id){
+        $id_destination = $id;
+        $data = review::where('id_destination' , $id_destination)->get();
+
+        return response([
+            'data' => $data
+        ]);
+    }
 }

@@ -5,7 +5,7 @@
             <h2>Explore incredible things to do around Madura</h2>
             <div class="input-group mb-3 w-50 mx-auto">
                 <input type="text" class="form-control round_shape-2 py-3" placeholder="Search Your Destination here..." aria-label="Recipient's username" aria-describedby="button-addon2" v-model="key">
-                <router-link :to="`/search/${key}`" class="btn btn-outline-secondary btn_custom-2 pt-3" id="button-addon2">Search</router-link>
+                <router-link :to="`${$route}/search/${key}`" class="btn btn-outline-secondary btn_custom-2 pt-3" id="button-addon2">Search</router-link>
             </div>
         </div>
     </div>
@@ -90,7 +90,7 @@
                     <img :src="`/images/${i.image}`" class="card-img-top" alt="">
                     <div class="card-body">
                         <h5 class="card-title">{{i.name}}</h5>
-                        <div class="d-flex"><router-link :to="`/detail/${i.id}`" class="btn btn_custom ms-auto">Baca Selengkapnya</router-link></div>
+                        <div class="d-flex"><router-link :to="`${$route.path}/detail/${i.id}`" class="btn btn_custom ms-auto">Baca Selengkapnya</router-link></div>
                     </div>
                 </div>
             </div>
@@ -194,7 +194,7 @@ export default {
             if (this.review.length >= 3){
                 this.review.length = 3
             }
-        }
+        },
     },
     mounted() {
         this.get();

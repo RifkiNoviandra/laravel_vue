@@ -17,7 +17,7 @@
             <div class="container-fluid d-flex flex-column justify-content-center py-5 px-5">
                 <p class="size">Facilities:{{data.facility}}</p>
                 <p class="size">Itinerary Suggestion: -</p>
-                <p class="size">Rating:{{data.rating}}</p>
+                <p class="size">Rating:{{rating_all_user.toFixed(1)}}</p>
             </div>
             <div class="container-fluid py-5 d-flex">
                 <h2 class="me-3">Review Terbaru :</h2>
@@ -49,7 +49,13 @@
                                 <label>Review :</label>
                                 <textarea name="Review" class="form-control" v-model="review"></textarea>
                                 <label>Rating :</label>
-                                <input type="text" name="rating" class="form-control" v-model="rating">
+                                <div class="container d-flex" id="rating">
+                                    <img :src="`/images/${image1.src}`" alt="" id="rating1" v-on:click="src_change(image1.id)">
+                                    <img :src="`/images/${image2.src}`" alt="" id="rating2" v-on:click="src_change(image2.id)">
+                                    <img :src="`/images/${image3.src}`" alt="" id="rating3" v-on:click="src_change(image3.id)">
+                                    <img :src="`/images/${image4.src}`" alt="" id="rating4" v-on:click="src_change(image4.id)">
+                                    <img :src="`/images/${image5.src}`" alt="" id="rating5" v-on:click="src_change(image5.id)">
+                                </div>
                             </form>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -64,14 +70,22 @@
 </template>
 
 <script>
+
 export default {
     name: 'detail_page',
 
     data(){
         return {
             data : [],
+            data_rating : [],
             review : "",
             rating: "",
+            rating_all_user : 0,
+            image1: {id: 1, src: "star.png"},
+            image2: {id: 2, src: "star.png"},
+            image3: {id: 3, src: 'star.png'},
+            image4: {id: 4, src: 'star.png'},
+            image5: {id: 5, src: 'star.png'},
         }
     },
 
@@ -92,11 +106,71 @@ export default {
             this.detail();
             this.review = ""
             this.rating = ""
+        },
+        async get_rating(){
+            let rating_user = 0
+            let path = await window.axios.get(`/api/user/review/${this.$route.params.id}`);
+            this.data_rating = path.data.data
+            this.data_rating.forEach((items) => {
+                rating_user += parseInt(items.rating);
+            })
+
+            this.rating_all_user = rating_user/this.data_rating.length
+
+        },
+
+        src_change(id){
+            console.log(id);
+            if (id===1){
+                this.rating = 1
+                this.image1.src = "star-checked.png"
+                this.image2.src = "star.png"
+                this.image3.src = "star.png"
+                this.image4.src = "star.png"
+                this.image5.src = "star.png"
+            }
+            if (id===2){
+                this.rating = 2
+                this.image1.src = "star-checked.png"
+                this.image2.src = "star-checked.png"
+                this.image3.src = "star.png"
+                this.image4.src = "star.png"
+                this.image5.src = "star.png"
+            }
+            if (id===3){
+                this.rating = 3
+                this.image1.src = "star-checked.png"
+                this.image2.src = "star-checked.png"
+                this.image3.src = "star-checked.png"
+                this.image4.src = "star.png"
+                this.image5.src = "star.png"
+            }
+            if (id===4){
+                this.rating = 4
+                this.image1.src = "star-checked.png"
+                this.image2.src = "star-checked.png"
+                this.image3.src = "star-checked.png"
+                this.image4.src = "star-checked.png"
+                this.image5.src = "star.png"
+            }
+            if (id===5){
+                this.rating = 5
+                this.image1.src = "star-checked.png"
+                this.image2.src = "star-checked.png"
+                this.image3.src = "star-checked.png"
+                this.image4.src = "star-checked.png"
+                this.image5.src = "star-checked.png"
+            }
+        },
+
+        get_rating_all_user(){
+
         }
     },
 
     mounted() {
         this.detail();
+        this.get_rating();
     }
 };
 </script>
@@ -105,5 +179,10 @@ export default {
     .container-fluid .size{
         font-size: 24px;
         font-weight: bold;
+    }
+
+    #rating img{
+        width: 50px;
+        height: 50px;
     }
 </style>
